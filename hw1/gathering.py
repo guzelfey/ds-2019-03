@@ -162,18 +162,18 @@ def stats_of_data():
         ['Unnamed: 0', 'Chemicals', 'Grant_Agency', 'Grant_Country', 'Grant_ID', 'Volume_Issue_Page', 'Mesh_Terms'],
         axis=1)
     df1 = df1.dropna(subset=['Authors', 'Publication_Year'])
-    print('The information about indexed publications, concerning regulatory T cells in cancer.')
-    print('10 Journals that publish these articles most commonly are the following:')
-    print(df1['Journal_Title'].value_counts()[0:11])
-    print('The number of these publications grows each year: (except 2014)')
+    logger.info('The information about indexed publications, concerning regulatory T cells in cancer.')
+    logger.info('10 Journals that publish these articles most commonly are the following:')
+    logger.info(df1['Journal_Title'].value_counts()[0:11])
+    logger.info('The number of these publications grows each year: (except 2014)')
     df1['Publication_Year'] = df1['Publication_Year'].astype('int64').astype('category')
-    print(df1['Publication_Year'].value_counts())
+    logger.info(df1['Publication_Year'].value_counts())
     df1['Authors'] = df1['Authors'].str.replace("[", "")
     df1['Authors'] = df1['Authors'].str.replace("]", "")
     df1['Authors'] = df1['Authors'].str.replace("'", "")
     stingy = df1['Authors'].str.cat(sep=', ')
-    print('10 authors that contribute to this theme most commonly:')
-    print(Counter(stingy.split(', ')).most_common(10))
+    logger.info('10 authors that contribute to this theme most commonly:')
+    logger.info(Counter(stingy.split(', ')).most_common(10))
 
 
 if __name__ == '__main__':
